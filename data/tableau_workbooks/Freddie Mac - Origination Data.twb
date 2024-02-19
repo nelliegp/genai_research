@@ -1,0 +1,2134 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20241.24.0130.2035                               -->
+<workbook version='8.2' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData?rev=2.7' id='FreddieMac-OriginationData' path='/workbooks' revision='2.7' />
+  <preferences />
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='8.2'>
+      <aliases enabled='yes' />
+      <column alias='Occupancy Status' caption='Dimension Select' datatype='integer' name='[Parameter 1]' param-domain-type='list' role='measure' type='quantitative' value='1'>
+        <calculation class='tableau' formula='1' />
+        <aliases>
+          <alias key='1' value='Occupancy Status' />
+          <alias key='2' value='Loan Purpose' />
+          <alias key='3' value='Property Type' />
+          <alias key='4' value='Unit Type' />
+        </aliases>
+        <members>
+          <member alias='Occupancy Status' value='1' />
+          <member alias='Loan Purpose' value='2' />
+          <member alias='Property Type' value='3' />
+          <member alias='Unit Type' value='4' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='tbl_origin_combined (Freddie_combined.mdb)' inline='true' name='msaccess.41687.465545648149' version='8.2'>
+      <connection authentication='no' class='msaccess' driver='' mdwpath=''>
+        <relation name='tbl_origin_combined' table='[tbl_origin_combined]' type='table' />
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='real' name='[cd_msa]' role='dimension' semantic-role='[CMSA].[Name]' type='ordinal' />
+      <column caption='CLTV' datatype='real' name='[cltv]' role='measure' type='quantitative' />
+      <column caption='DTI' datatype='real' name='[dti]' role='measure' type='quantitative' />
+      <column caption='LTV' datatype='real' name='[ltv]' role='measure' type='quantitative' />
+      <column caption='Original_UPB' datatype='real' name='[orig_upb]' role='measure' type='quantitative' />
+      <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='Year' datatype='real' name='[year]' role='dimension' type='quantitative' />
+      <column datatype='string' name='[zipcode]' role='dimension' semantic-role='[AreaCode].[Name]' type='nominal' />
+      <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+      <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+      <group hidden='true' name='[Action (State)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (st)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (st,year)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+          <groupfilter function='level-members' level='[year]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Inclusions (State,Year)]' name-style='unqualified' user:auto-column='include'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:st:nk]' />
+          <groupfilter function='level-members' level='[none:year:ok]' />
+        </groupfilter>
+      </group>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='Data\TableauTemp\#TableauTemp_1jjyzay1k912vn1goa1me0ozyngj.tde' schema='Extract' tablename='Extract' update-time='2/17/2014 4:48:59 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='237500' timestamp-start='2014-02-17 16:48:59.418000' />
+          </refresh>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='tbl_origin_combined (Freddie_Origination.mdb)' inline='true' name='msaccess.41688.427169791670' version='8.2'>
+      <connection authentication='no' class='msaccess' driver='' mdwpath=''>
+        <relation name='tbl_origin_combined' table='[tbl_origin_combined]' type='table' />
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='CLTV' datatype='real' name='[cltv]' role='measure' type='quantitative' />
+      <column caption='DTI' datatype='real' name='[dti]' role='measure' type='quantitative' />
+      <column caption='LTV' datatype='real' name='[ltv]' role='measure' type='quantitative' />
+      <column datatype='real' name='[orig_upb]' role='measure' type='quantitative' />
+      <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='Year' datatype='real' datatype-customized='true' name='[year]' role='dimension' type='ordinal' />
+      <column datatype='string' name='[zipcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+      <column-instance column='[cltv]' derivation='Avg' name='[avg:cltv:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[dti]' derivation='Avg' name='[avg:dti:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[ltv]' derivation='Avg' name='[avg:ltv:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[orig_upb]' derivation='Avg' name='[avg:orig_upb:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+      <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[orig_upb]' derivation='Sum' name='[sum:orig_upb:qk]' pivot='key' type='quantitative' />
+      <group hidden='true' name='[Action (State)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (st)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (st,year)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+          <groupfilter function='level-members' level='[year]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Inclusions (State,Year)]' name-style='unqualified' user:auto-column='include'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:st:nk]' />
+          <groupfilter function='level-members' level='[none:year:ok]' />
+        </groupfilter>
+      </group>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='Data\TableauTemp 1\#TableauTemp_1iigy6003dmp5f1h4825d103p6yn.tde' schema='Extract' tablename='Extract' update-time='2/18/2014 3:15:08 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;[msaccess.41688.427169791670].[avg:dti:qk]&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;[msaccess.41688.427169791670].[avg:cltv:qk]&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;[msaccess.41688.427169791670]&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;[msaccess.41688.427169791670].[sum:orig_upb:qk]&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;[msaccess.41688.427169791670].[avg:orig_upb:qk]&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;[msaccess.41688.427169791670].[sum:Number of Records:qk]&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;[msaccess.41688.427169791670].[avg:ltv:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' inline='true' name='msaccess.41688.758064317131' version='8.2'>
+      <connection authentication='no' class='msaccess' driver='' mdwpath=''>
+        <relation name='tbl_origin_combined' table='[tbl_origin_combined]' type='table' />
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[:Measure Names]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;[msaccess.41688.758064317131]&quot;' value='Zipcode' />
+        </aliases>
+      </column>
+      <column caption='Occupancy Status Detail' datatype='string' name='[Calculation_1890219115410625]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [occpy_sts] = &quot;O&quot; then &quot;Owner Occupied&quot;&#13;&#10;elseif [occpy_sts] = &quot;I&quot; then &quot;Investment Property&quot; &#13;&#10;elseif [occpy_sts] = &quot;S&quot; then &quot;Second Home&quot;  end' scope-isolation='false' />
+      </column>
+      <column caption='Selected Dimension' datatype='string' name='[Calculation_4450220094736125]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [Parameters].[Parameter 1] = 1 then [Calculation_1890219115410625] &#13;&#10;elseif [Parameters].[Parameter 1] = 2 then [Calculation_6170219114510521]&#13;&#10;elseif [Parameters].[Parameter 1] = 3 then [Calculation_8370219115907290]&#13;&#10;elseif [Parameters].[Parameter 1] = 4 then [Calculation_7680219121025640] end' scope-isolation='false' />
+      </column>
+      <column caption='Loan Purpose Detail' datatype='string' name='[Calculation_6170219114510521]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [loan_purpose] = &quot;P&quot; then &quot;Purchase&quot;&#13;&#10;elseif [loan_purpose] = &quot;C&quot; then &quot;Cash-out Refinance&quot; &#13;&#10;elseif [loan_purpose] = &quot;N&quot; then &quot;No Cash-out Refinance&quot;  end' scope-isolation='false' />
+      </column>
+      <column caption='Unit Detailed' datatype='string' name='[Calculation_7680219121025640]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [cnt_units] = &quot;1&quot; then &quot;One-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;2&quot; then &quot;Two-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;3&quot; then &quot;Three-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;4&quot; then &quot;Four-unit&quot; end' scope-isolation='false' />
+      </column>
+      <column caption='Property Type Detail' datatype='string' name='[Calculation_8370219115907290]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [prop_type] = &quot;CO&quot; then &quot;Condo&quot;&#13;&#10;elseif [prop_type] = &quot;LH&quot; then &quot;Leasehold&quot;&#13;&#10;elseif [prop_type] = &quot;PUD&quot; then &quot;Planned Unit Development&quot;&#13;&#10;elseif [prop_type] = &quot;MH&quot; then &quot;Manufactured Housing&quot;&#13;&#10;elseif [prop_type] = &quot;SF&quot; then &quot;1-4 Fee Simple&quot;&#13;&#10;elseif [prop_type] = &quot;CP&quot; then &quot;Co-op&quot; end' scope-isolation='false' />
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='CLTV' datatype='real' name='[cltv]' role='measure' type='quantitative' />
+      <column datatype='string' datatype-customized='true' name='[cnt_units]' role='dimension' type='nominal' />
+      <column caption='DTI' datatype='real' name='[dti]' role='measure' type='quantitative' />
+      <column caption='FICO' datatype='real' name='[fico]' role='measure' type='quantitative' />
+      <column caption='Loan ID' datatype='string' name='[id_loan]' role='dimension' type='nominal' />
+      <column caption='Loan Purpose' datatype='string' name='[loan_purpose]' role='dimension' type='nominal' />
+      <column caption='LTV' datatype='real' name='[ltv]' role='measure' type='quantitative' />
+      <column datatype='string' name='[occpy_sts]' role='dimension' type='nominal' />
+      <column caption='Original UPB' datatype='real' name='[orig_upb]' role='measure' type='quantitative' />
+      <column datatype='string' name='[seller]' role='dimension' type='nominal' />
+      <column caption='Servicer Name' datatype='string' name='[servicer_name]' role='dimension' type='nominal' />
+      <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='Year' datatype='real' name='[year]' role='dimension' type='quantitative' />
+      <column caption='Zipcode' datatype='string' name='[zipcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+      <column-instance column='[cltv]' derivation='Avg' name='[avg:cltv:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[dti]' derivation='Avg' name='[avg:dti:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[ltv]' derivation='Avg' name='[avg:ltv:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[cnt_units]' derivation='Count' name='[cnt:cnt_units:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[Calculation_4450220094736125]' derivation='None' name='[none:Calculation_4450220094736125:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Calculation_7680219121025640]' derivation='None' name='[none:Calculation_7680219121025640:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Calculation_8370219115907290]' derivation='None' name='[none:Calculation_8370219115907290:nk]' pivot='key' type='nominal' />
+      <column-instance column='[occpy_sts]' derivation='None' name='[none:occpy_sts:nk]' pivot='key' type='nominal' />
+      <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+      <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+      <group hidden='true' name='[Action (State)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (seller)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[seller]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (seller,Year)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[seller]' />
+          <groupfilter function='level-members' level='[year]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (seller,year)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[seller]' />
+          <groupfilter function='level-members' level='[year]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (st)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Action (st,year)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[st]' />
+          <groupfilter function='level-members' level='[year]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Inclusions (State,Year)]' name-style='unqualified' user:auto-column='include'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:st:nk]' />
+          <groupfilter function='level-members' level='[none:year:ok]' />
+        </groupfilter>
+      </group>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='Data\TableauTemp 2\#TableauTemp_1gnc51s1ymsxow1c4pilb0dlla0h.tde' schema='Extract' tablename='Extract' update-time='2/18/2014 11:11:59 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Calculation_1890219115410625]' formula='if [occpy_sts] = &quot;O&quot; then &quot;Owner Occupied&quot;&#13;&#10;elseif [occpy_sts] = &quot;I&quot; then &quot;Investment Property&quot; &#13;&#10;elseif [occpy_sts] = &quot;S&quot; then &quot;Second Home&quot;  end' />
+            <calculation column='[Calculation_6170219114510521]' formula='if [loan_purpose] = &quot;P&quot; then &quot;Purchase&quot;&#13;&#10;elseif [loan_purpose] = &quot;C&quot; then &quot;Cash-out Refinance&quot; &#13;&#10;elseif [loan_purpose] = &quot;N&quot; then &quot;No Cash-out Refinance&quot;  end' />
+            <calculation column='[Calculation_7680219121025640]' formula='if [cnt_units] = &quot;1&quot; then &quot;One-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;2&quot; then &quot;Two-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;3&quot; then &quot;Three-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;4&quot; then &quot;Four-unit&quot; end' />
+            <calculation column='[Calculation_8370219115907290]' formula='if [prop_type] = &quot;CO&quot; then &quot;Condo&quot;&#13;&#10;elseif [prop_type] = &quot;LH&quot; then &quot;Leasehold&quot;&#13;&#10;elseif [prop_type] = &quot;PUD&quot; then &quot;Planned Unit Development&quot;&#13;&#10;elseif [prop_type] = &quot;MH&quot; then &quot;Manufactured Housing&quot;&#13;&#10;elseif [prop_type] = &quot;SF&quot; then &quot;1-4 Fee Simple&quot;&#13;&#10;elseif [prop_type] = &quot;CP&quot; then &quot;Co-op&quot; end' />
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:st:nk]' type='palette'>
+            <map to='#17becf'>
+              <bucket>&quot;KY&quot;</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>&quot;OR&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;AK&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;MA&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;PR&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;CA&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;MN&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;TN&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;ID&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;NV&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;GA&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;NE&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;WA&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;DE&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;NC&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;VI&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;CO&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;MO&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;TX&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;LA&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;PA&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;AL&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;MD&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;RI&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;IN&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;OH&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;GU&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;NH&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;WI&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;FL&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;ND&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;VT&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;IL&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;NY&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;CT&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;MS&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;UT&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;KS&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;OK&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;HI&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;NJ&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;WV&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;IA&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;NM&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;WY&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;AR&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;ME&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;SC&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;DC&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;MT&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;VA&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;AZ&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;MI&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;SD&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[cnt:cnt_units:ok]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>4</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>50000</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>42963</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>3088</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>2730</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>2102</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1679</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>44259</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>3498</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>2797</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>43772</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>2477</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>45799</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>4240</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>33719</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>37500</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>2653</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1724</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:occpy_sts:nk]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;I&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;S&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;O&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_4450220094736125:nk]' type='palette'>
+            <map to='#17becf'>
+              <bucket>&quot;Condo&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;Four-unit&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;Investment Property&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Second Home&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Three-unit&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;1-4 Fee Simple&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;Manufactured Housing&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;Purchase&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;Leasehold&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;No Cash-out Refinance&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;Co-op&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;Cash-out Refinance&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;Two-unit&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;One-unit&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;Owner Occupied&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;[msaccess.41688.758064317131].[avg:dti:qk]&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;[msaccess.41688.758064317131].[avg:cltv:qk]&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;[msaccess.41688.758064317131].[avg:ltv:qk]&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_8370219115907290:nk]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Co-op&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;Manufactured Housing&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;Leasehold&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;Condo&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;1-4 Fee Simple&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_7680219121025640:nk]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;Four-unit&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Three-unit&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;Two-unit&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;One-unit&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column alias='Occupancy Status' caption='Dimension Select' datatype='integer' name='[Parameter 1]' param-domain-type='list' role='measure' type='quantitative' value='1'>
+          <calculation class='tableau' formula='1' />
+          <aliases>
+            <alias key='1' value='Occupancy Status' />
+            <alias key='2' value='Loan Purpose' />
+            <alias key='3' value='Property Type' />
+            <alias key='4' value='Unit Type' />
+          </aliases>
+          <members>
+            <member alias='Occupancy Status' value='1' />
+            <member alias='Loan Purpose' value='2' />
+            <member alias='Property Type' value='3' />
+            <member alias='Unit Type' value='4' />
+          </members>
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Online' />
+  </mapsources>
+  <actions>
+    <action caption='Filter1' name='[Action1]'>
+      <activation type='on-select' />
+      <source dashboard='Bubble Dashboard' type='sheet' worksheet='Bubble Chart By Volume' />
+      <link caption='Filter1' delimiter=',' escape='\' expression='tsl:Bubble%20Dashboard?%5Bmsaccess.41688.758064317131%5D.%5Bseller%5D~s0=&lt;[seller]~na&gt;&amp;%5Bmsaccess.41688.758064317131%5D.%5Byear%5D~s0=&lt;[year]~na&gt;' include-null='true' multi-select='true' url-escape='true' />
+      <command command='tsc:tsl-filter'>
+        <param name='exclude' value='Bubble Chart By Volume' />
+        <param name='target' value='Bubble Dashboard' />
+      </command>
+    </action>
+    <action caption='Go to Bubble Chart' name='[Action2]'>
+      <source dashboard='Geo Dashboard' type='sheet' worksheet='Geographic Origination' />
+      <link caption='Go to Bubble Chart' delimiter=',' escape='\' expression='tsl:Bubble%20Dashboard?%5Bmsaccess.41688.758064317131%5D.%5Bst%5D~s0=&lt;[st]~na&gt;' include-null='true' multi-select='true' url-escape='true' />
+      <command command='tsc:tsl-filter'>
+        <param name='target' value='Bubble Dashboard' />
+      </command>
+    </action>
+    <action caption='Highlight 1 (generated)' name='[Action3]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Pie Dashboard' type='sheet' />
+      <command command='tsc:brush'>
+        <param name='field-captions' value='Occupancy Status Detail,Unit Detailed,Property Type Detail' />
+        <param name='target' value='Pie Dashboard' />
+      </command>
+    </action>
+    <action caption='Filter2' name='[Action4]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Geo Dashboard' type='sheet' worksheet='Geographic Origination' />
+      <link caption='Filter2' delimiter=',' escape='\' expression='tsl:Geo%20Dashboard?%5Bmsaccess.41688.758064317131%5D.%5Bst%5D~s0=&lt;[st]~na&gt;' include-null='true' multi-select='true' url-escape='true' />
+      <command command='tsc:tsl-filter'>
+        <param name='exclude' value='Geographic Origination' />
+        <param name='target' value='Geo Dashboard' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='Bubble Chart By Volume'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run><![CDATA[<Sheet Name>, <[msaccess.41688.758064317131].[st]>
+]]></run>
+            <run bold='false' fontsize='10'>click on bubble for detailed loan information</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/BubbleChartByVolume?rev=' id='5194303' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column-instance column='[seller_name]' derivation='Count' name='[cnt:seller_name:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[seller]' derivation='None' name='[none:seller:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column datatype='string' name='[seller]' role='dimension' type='nominal' />
+            <column datatype='string' name='[seller_name]' role='dimension' type='nominal' />
+            <column caption='Year' datatype='real' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[Action (State)]'>
+            <groupfilter function='member' level='[st]' member='&quot;WA&quot;' user:ui-action-filter='[Action2]' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[Action (State)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='636' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='on' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <size column='[msaccess.41688.758064317131].[cnt:seller_name:qk]' />
+              <color column='[msaccess.41688.758064317131].[none:year:ok]' />
+              <text column='[msaccess.41688.758064317131].[none:seller:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='datalabel'>
+                <format attr='font-size' value='8' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-line-first' value='true' />
+                <format attr='mark-labels-line-last' value='true' />
+                <format attr='mark-labels-range-min' value='true' />
+                <format attr='mark-labels-range-max' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-range-scope' value='pane' />
+                <format attr='mark-labels-range-field' value='' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name='Detailed Loan Information'>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/DetailedLoanInformation?rev=' id='5194304' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column caption='FICO' datatype='real' name='[fico]' role='measure' type='quantitative' />
+            <column caption='Loan ID' datatype='string' name='[id_loan]' role='dimension' type='nominal' />
+            <column caption='Loan Purpose' datatype='string' name='[loan_purpose]' role='dimension' type='nominal' />
+            <column-instance column='[fico]' derivation='None' name='[none:fico:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[id_loan]' derivation='None' name='[none:id_loan:nk]' pivot='key' type='nominal' />
+            <column-instance column='[loan_purpose]' derivation='None' name='[none:loan_purpose:nk]' pivot='key' type='nominal' />
+            <column-instance column='[orig_upb]' derivation='None' name='[none:orig_upb:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[seller]' derivation='None' name='[none:seller:nk]' pivot='key' type='nominal' />
+            <column-instance column='[servicer_name]' derivation='None' name='[none:servicer_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[zipcode]' derivation='None' name='[none:zipcode:nk]' pivot='key' type='nominal' />
+            <column caption='Original UPB' datatype='real' name='[orig_upb]' role='measure' type='quantitative' />
+            <column datatype='string' name='[seller]' role='dimension' type='nominal' />
+            <column caption='Servicer Name' datatype='string' name='[servicer_name]' role='dimension' type='nominal' />
+            <column caption='Year' datatype='real' name='[year]' role='dimension' type='quantitative' />
+            <column caption='Zipcode' datatype='string' name='[zipcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[Action (State)]'>
+            <groupfilter function='member' level='[st]' member='&quot;WA&quot;' user:ui-action-filter='[Action2]' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[Action (seller,Year)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action1]' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[seller]' member='&quot;Other Sellers&quot;' />
+              <groupfilter function='member' level='[year]' member='2011.0' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[Action (seller,year)]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[seller]' />
+              <groupfilter function='level-members' level='[year]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:orig_upb:ok]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='COUNT([year])' function='order' user:ui-marker='order'>
+                <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='20000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='22000.0' />
+                  <groupfilter from='26000.0' function='range' level='[none:orig_upb:ok]' to='30000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='32000.0' />
+                  <groupfilter from='34000.0' function='range' level='[none:orig_upb:ok]' to='417000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='420000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='422000.0' />
+                  <groupfilter from='427000.0' function='range' level='[none:orig_upb:ok]' to='430000.0' />
+                  <groupfilter from='432000.0' function='range' level='[none:orig_upb:ok]' to='437000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='439000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='440000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='443000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='444000.0' />
+                  <groupfilter from='448000.0' function='range' level='[none:orig_upb:ok]' to='450000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='452000.0' />
+                  <groupfilter from='454000.0' function='range' level='[none:orig_upb:ok]' to='473000.0' />
+                  <groupfilter from='475000.0' function='range' level='[none:orig_upb:ok]' to='477000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='479000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='480000.0' />
+                  <groupfilter from='482000.0' function='range' level='[none:orig_upb:ok]' to='494000.0' />
+                  <groupfilter from='496000.0' function='range' level='[none:orig_upb:ok]' to='501000.0' />
+                  <groupfilter from='503000.0' function='range' level='[none:orig_upb:ok]' to='508000.0' />
+                  <groupfilter from='510000.0' function='range' level='[none:orig_upb:ok]' to='512000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='514000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='517000.0' />
+                  <groupfilter from='519000.0' function='range' level='[none:orig_upb:ok]' to='525000.0' />
+                  <groupfilter from='527000.0' function='range' level='[none:orig_upb:ok]' to='537000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='539000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='540000.0' />
+                  <groupfilter from='543000.0' function='range' level='[none:orig_upb:ok]' to='562000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='564000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='566000.0' />
+                  <groupfilter from='568000.0' function='range' level='[none:orig_upb:ok]' to='570000.0' />
+                  <groupfilter from='574000.0' function='range' level='[none:orig_upb:ok]' to='585000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='587000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='590000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='592000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='594000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='595000.0' />
+                  <groupfilter from='597000.0' function='range' level='[none:orig_upb:ok]' to='600000.0' />
+                  <groupfilter from='603000.0' function='range' level='[none:orig_upb:ok]' to='608000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='610000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='612000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='613000.0' />
+                  <groupfilter from='615000.0' function='range' level='[none:orig_upb:ok]' to='623000.0' />
+                  <groupfilter from='625000.0' function='range' level='[none:orig_upb:ok]' to='627000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='630000.0' />
+                  <groupfilter from='632000.0' function='range' level='[none:orig_upb:ok]' to='636000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='638000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='640000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='641000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='645000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='647000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='648000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='651000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='653000.0' />
+                  <groupfilter from='655000.0' function='range' level='[none:orig_upb:ok]' to='657000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='660000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='661000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='663000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='666000.0' />
+                  <groupfilter from='668000.0' function='range' level='[none:orig_upb:ok]' to='670000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='672000.0' />
+                  <groupfilter from='674000.0' function='range' level='[none:orig_upb:ok]' to='676000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='680000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='683000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='685000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='686000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='690000.0' />
+                  <groupfilter from='692000.0' function='range' level='[none:orig_upb:ok]' to='694000.0' />
+                  <groupfilter from='696000.0' function='range' level='[none:orig_upb:ok]' to='698000.0' />
+                  <groupfilter from='700000.0' function='range' level='[none:orig_upb:ok]' to='703000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='705000.0' />
+                  <groupfilter from='708000.0' function='range' level='[none:orig_upb:ok]' to='711000.0' />
+                  <groupfilter from='718000.0' function='range' level='[none:orig_upb:ok]' to='720000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='722000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='723000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='725000.0' />
+                  <groupfilter from='727000.0' function='range' level='[none:orig_upb:ok]' to='735000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='750000.0' />
+                  <groupfilter function='member' level='[none:orig_upb:ok]' member='802000.0' />
+                </groupfilter>
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[none:orig_upb:ok]</column>
+            <column>[msaccess.41688.758064317131].[Action (seller,year)]</column>
+            <column>[msaccess.41688.758064317131].[Action (seller,Year)]</column>
+            <column>[msaccess.41688.758064317131].[Action (State)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='display' field='[msaccess.41688.758064317131].[none:seller:nk]' value='true' />
+            <format attr='display' field='[msaccess.41688.758064317131].[none:orig_upb:ok]' value='true' />
+            <format attr='display' field='[msaccess.41688.758064317131].[:Measure Names]' value='true' />
+            <format attr='display' field='[msaccess.41688.758064317131].[none:id_loan:nk]' value='true' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='5'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[msaccess.41688.758064317131].[none:zipcode:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([msaccess.41688.758064317131].[none:seller:nk] / ([msaccess.41688.758064317131].[none:year:ok] / ([msaccess.41688.758064317131].[none:id_loan:nk] / ([msaccess.41688.758064317131].[none:orig_upb:ok] / ([msaccess.41688.758064317131].[none:fico:ok] / ([msaccess.41688.758064317131].[none:servicer_name:nk] / [msaccess.41688.758064317131].[none:loan_purpose:nk]))))))</rows>
+        <cols>[msaccess.41688.758064317131].[:Measure Names]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Dimension Select'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run><![CDATA[<Sheet Name>, <[msaccess.41688.758064317131].[seller]> <[msaccess.41688.758064317131].[year]>
+]]></run>
+            <run bold='false' fontsize='10'>select type of dimension below</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/DimensionSelect?rev=' id='5194309' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+            <datasource name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column caption='Selected Dimension' datatype='string' name='[Calculation_4450220094736125]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [Parameters].[Parameter 1] = 1 then [Calculation_1890219115410625] &#13;&#10;elseif [Parameters].[Parameter 1] = 2 then [Calculation_6170219114510521]&#13;&#10;elseif [Parameters].[Parameter 1] = 3 then [Calculation_8370219115907290]&#13;&#10;elseif [Parameters].[Parameter 1] = 4 then [Calculation_7680219121025640] end' scope-isolation='false' />
+            </column>
+            <column-instance column='[Calculation_4450220094736125]' derivation='None' name='[none:Calculation_4450220094736125:nk]' pivot='key' type='nominal' />
+            <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+            <column caption='Original UPB' datatype='real' name='[orig_upb]' role='measure' type='quantitative' />
+            <column-instance column='[orig_upb]' derivation='Sum' name='[pcto:sum:orig_upb:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[orig_upb]' derivation='Sum' name='[sum:orig_upb:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[Action (State)]'>
+            <groupfilter function='member' level='[st]' member='&quot;WA&quot;' user:ui-action-filter='[Action2]' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[Action (seller,Year)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action1]' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[seller]' member='&quot;Other Sellers&quot;' />
+              <groupfilter function='member' level='[year]' member='2011.0' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:st:nk]' filter-group='3'>
+            <groupfilter function='level-members' level='[none:st:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[none:st:nk]</column>
+            <column>[msaccess.41688.758064317131].[Action (State)]</column>
+            <column>[msaccess.41688.758064317131].[Action (seller,Year)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='height' value='295' />
+            <format attr='width' value='428' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[msaccess.41688.758064317131].[none:Calculation_4450220094736125:nk]' />
+              <wedge-size column='[msaccess.41688.758064317131].[sum:orig_upb:qk]' />
+              <text column='[msaccess.41688.758064317131].[none:Calculation_4450220094736125:nk]' />
+              <text column='[msaccess.41688.758064317131].[pcto:sum:orig_upb:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name='Geographic Origination'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run><![CDATA[Average Original Unpaid Principal Balance, Year <Page Name>
+]]></run>
+            <run bold='false' fontsize='10'>select year on right side
+click the state name on map for more detailed information
+</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/GeographicOrigination?rev=' id='5194301' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Online' />
+          </mapsources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column-instance column='[cltv]' derivation='Avg' name='[avg:cltv:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[dti]' derivation='Avg' name='[avg:dti:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[ltv]' derivation='Avg' name='[avg:ltv:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[orig_upb]' derivation='Avg' name='[avg:orig_upb:qk]' pivot='key' type='quantitative' />
+            <column caption='CLTV' datatype='real' name='[cltv]' role='measure' type='quantitative' />
+            <column caption='DTI' datatype='real' name='[dti]' role='measure' type='quantitative' />
+            <column caption='LTV' datatype='real' name='[ltv]' role='measure' type='quantitative' />
+            <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Original UPB' datatype='real' name='[orig_upb]' role='measure' type='quantitative' />
+            <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='real' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[msaccess.41688.758064317131].[Longitude (generated)]' field-type='quantitative' max='34276230.707729295' min='24452885.55985317' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[msaccess.41688.758064317131].[Latitude (generated)]' field-type='quantitative' max='7190646.3976996858' min='1377355.6065177473' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[msaccess.41688.758064317131].[avg:orig_upb:qk]' value='Average Original UPB, $'>
+              <formatted-text>
+                <run>Average Original UPB, $</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='pp2_line' value='false' />
+            <format attr='enabled' id='um_light_countries' value='true' />
+            <format attr='enabled' id='um_light_states' value='true' />
+            <format attr='enabled' id='pp2_adminlabels' value='false' />
+            <format attr='enabled' id='pp2_statebounds' value='false' />
+            <format attr='enabled' id='pp2_statelabels' value='false' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Multipolygon' />
+            <encodings>
+              <color column='[msaccess.41688.758064317131].[avg:orig_upb:qk]' />
+              <text column='[msaccess.41688.758064317131].[none:st:nk]' />
+              <text column='[msaccess.41688.758064317131].[avg:ltv:qk]' />
+              <lod column='[msaccess.41688.758064317131].[sum:Number of Records:qk]' />
+              <lod column='[msaccess.41688.758064317131].[avg:cltv:qk]' />
+              <lod column='[msaccess.41688.758064317131].[avg:dti:qk]' />
+              <geometry column='[msaccess.41688.758064317131].[Geometry (generated)]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[msaccess.41688.758064317131].[Latitude (generated)]</rows>
+        <cols>[msaccess.41688.758064317131].[Longitude (generated)]</cols>
+        <pages>
+          <column>[msaccess.41688.758064317131].[none:year:ok]</column>
+        </pages>
+        <page-trail-options mark-type='all' />
+      </table>
+    </worksheet>
+    <worksheet name='Loan Purpose'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run><![CDATA[<Sheet Name>, <[msaccess.41688.758064317131].[none:st:nk]>
+]]></run>
+            <run bold='false' fontsize='10'>select state on right side</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/LoanPurpose?rev=' id='5194305' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column caption='Loan Purpose Detail' datatype='string' name='[Calculation_6170219114510521]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [loan_purpose] = &quot;P&quot; then &quot;Purchase&quot;&#13;&#10;elseif [loan_purpose] = &quot;C&quot; then &quot;Cash-out Refinance&quot; &#13;&#10;elseif [loan_purpose] = &quot;N&quot; then &quot;No Cash-out Refinance&quot;  end' scope-isolation='false' />
+            </column>
+            <column-instance column='[loan_purpose]' derivation='Count' name='[cnt:loan_purpose:qk]' pivot='key' type='quantitative' />
+            <column caption='Loan Purpose' datatype='string' name='[loan_purpose]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_6170219114510521]' derivation='None' name='[none:Calculation_6170219114510521:nk]' pivot='key' type='nominal' />
+            <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+            <column-instance column='[loan_purpose]' derivation='Count' name='[pcto:cnt:loan_purpose:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:st:nk]' filter-group='3'>
+            <groupfilter function='level-members' level='[none:st:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[none:st:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='365' />
+            <format attr='height' value='316' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[msaccess.41688.758064317131].[none:Calculation_6170219114510521:nk]' />
+              <wedge-size column='[msaccess.41688.758064317131].[cnt:loan_purpose:qk]' />
+              <text column='[msaccess.41688.758064317131].[none:Calculation_6170219114510521:nk]' />
+              <text column='[msaccess.41688.758064317131].[pcto:cnt:loan_purpose:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name='Metrics By State'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontsize='10'>Metrics Over Time, </run>
+            <run fontsize='10'>&lt;</run>
+            <run fontsize='10'>[msaccess.41688.758064317131].[st]</run>
+            <run fontsize='10'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/MetricsByState?rev=' id='5194302' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Online' />
+          </mapsources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column-instance column='[cltv]' derivation='Avg' name='[avg:cltv:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[dti]' derivation='Avg' name='[avg:dti:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[ltv]' derivation='Avg' name='[avg:ltv:qk]' pivot='key' type='quantitative' />
+            <column caption='CLTV' datatype='real' name='[cltv]' role='measure' type='quantitative' />
+            <column caption='DTI' datatype='real' name='[dti]' role='measure' type='quantitative' />
+            <column caption='LTV' datatype='real' name='[ltv]' role='measure' type='quantitative' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Year' datatype='real' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[msaccess.41688.758064317131].[avg:dti:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[msaccess.41688.758064317131].[avg:ltv:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[msaccess.41688.758064317131].[avg:cltv:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <sort class='manual' column='[msaccess.41688.758064317131].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[msaccess.41688.758064317131].[avg:dti:qk]&quot;</bucket>
+              <bucket>&quot;[msaccess.41688.758064317131].[avg:ltv:qk]&quot;</bucket>
+              <bucket>&quot;[msaccess.41688.758064317131].[avg:cltv:qk]&quot;</bucket>
+            </dictionary>
+          </sort>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[Action (State)]'>
+            <groupfilter function='level-members' level='[st]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[:Measure Names]</column>
+            <column>[msaccess.41688.758064317131].[Action (State)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='label'>
+            <format attr='display' field='[msaccess.41688.758064317131].[:Measure Names]' value='false' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[msaccess.41688.758064317131].[:Measure Names]' value='Metrics Legend'>
+              <formatted-text>
+                <run>Metrics Legend</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='pp2_line' value='false' />
+            <format attr='enabled' id='um_light_countries' value='true' />
+            <format attr='enabled' id='um_light_states' value='true' />
+            <format attr='enabled' id='pp2_adminlabels' value='false' />
+            <format attr='enabled' id='pp2_statebounds' value='false' />
+            <format attr='enabled' id='pp2_statelabels' value='false' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[msaccess.41688.758064317131].[:Measure Names]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[msaccess.41688.758064317131].[Multiple Values]</rows>
+        <cols>([msaccess.41688.758064317131].[none:year:ok] / [msaccess.41688.758064317131].[:Measure Names])</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Occupancy Status'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>&lt;</run>
+            <run>Sheet Name</run>
+            <run>&gt;</run>
+            <run>, </run>
+            <run>&lt;</run>
+            <run>[msaccess.41688.758064317131].[none:st:nk]</run>
+            <run>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/OccupancyStatus?rev=' id='5194306' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column caption='Occupancy Status Detail' datatype='string' name='[Calculation_1890219115410625]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [occpy_sts] = &quot;O&quot; then &quot;Owner Occupied&quot;&#13;&#10;elseif [occpy_sts] = &quot;I&quot; then &quot;Investment Property&quot; &#13;&#10;elseif [occpy_sts] = &quot;S&quot; then &quot;Second Home&quot;  end' scope-isolation='false' />
+            </column>
+            <column-instance column='[Calculation_1890219115410625]' derivation='Count' name='[cnt:Calculation_1890219115410625:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1890219115410625]' derivation='None' name='[none:Calculation_1890219115410625:nk]' pivot='key' type='nominal' />
+            <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_1890219115410625]' derivation='Count' name='[pcto:cnt:Calculation_1890219115410625:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:st:nk]' filter-group='3'>
+            <groupfilter function='level-members' level='[none:st:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[none:st:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='height' value='346' />
+            <format attr='width' value='349' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[msaccess.41688.758064317131].[none:Calculation_1890219115410625:nk]' />
+              <wedge-size column='[msaccess.41688.758064317131].[cnt:Calculation_1890219115410625:qk]' />
+              <text column='[msaccess.41688.758064317131].[none:Calculation_1890219115410625:nk]' />
+              <text column='[msaccess.41688.758064317131].[pcto:cnt:Calculation_1890219115410625:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name='Property Type'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>&lt;</run>
+            <run>Sheet Name</run>
+            <run>&gt;</run>
+            <run>, </run>
+            <run>&lt;</run>
+            <run>[msaccess.41688.758064317131].[none:st:nk]</run>
+            <run>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/PropertyType?rev=' id='5194307' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column caption='Property Type Detail' datatype='string' name='[Calculation_8370219115907290]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [prop_type] = &quot;CO&quot; then &quot;Condo&quot;&#13;&#10;elseif [prop_type] = &quot;LH&quot; then &quot;Leasehold&quot;&#13;&#10;elseif [prop_type] = &quot;PUD&quot; then &quot;Planned Unit Development&quot;&#13;&#10;elseif [prop_type] = &quot;MH&quot; then &quot;Manufactured Housing&quot;&#13;&#10;elseif [prop_type] = &quot;SF&quot; then &quot;1-4 Fee Simple&quot;&#13;&#10;elseif [prop_type] = &quot;CP&quot; then &quot;Co-op&quot; end' scope-isolation='false' />
+            </column>
+            <column-instance column='[Calculation_8370219115907290]' derivation='Count' name='[cnt:Calculation_8370219115907290:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_8370219115907290]' derivation='None' name='[none:Calculation_8370219115907290:nk]' pivot='key' type='nominal' />
+            <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_8370219115907290]' derivation='Count' name='[pcto:cnt:Calculation_8370219115907290:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:Calculation_8370219115907290:nk]' />
+              <groupfilter function='member' level='[none:Calculation_8370219115907290:nk]' member='%null%' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:st:nk]' filter-group='3'>
+            <groupfilter function='level-members' level='[none:st:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[none:st:nk]</column>
+            <column>[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='height' value='314' />
+            <format attr='width' value='361' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]' />
+              <wedge-size column='[msaccess.41688.758064317131].[cnt:Calculation_8370219115907290:qk]' />
+              <text column='[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]' />
+              <text column='[msaccess.41688.758064317131].[pcto:cnt:Calculation_8370219115907290:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+        <mark-labels>
+          <mark-label id='0'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields />
+                </pane-descriptor>
+                <columns>
+                  <field>[msaccess.41688.758064317131].[cnt:Calculation_8370219115907290:qk]</field>
+                  <field>[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]</field>
+                  <field>[msaccess.41688.758064317131].[pcto:cnt:Calculation_8370219115907290:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>95</value>
+                <value>&quot;Leasehold&quot;</value>
+                <value>0.00050771730300568638</value>
+              </tuple>
+            </tuple-reference>
+            <label-position x='3' y='27' />
+          </mark-label>
+          <mark-label id='1'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields />
+                </pane-descriptor>
+                <columns>
+                  <field>[msaccess.41688.758064317131].[cnt:Calculation_8370219115907290:qk]</field>
+                  <field>[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]</field>
+                  <field>[msaccess.41688.758064317131].[pcto:cnt:Calculation_8370219115907290:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>648</value>
+                <value>&quot;Co-op&quot;</value>
+                <value>0.0034631664457651034</value>
+              </tuple>
+            </tuple-reference>
+            <label-position x='-42' y='17' />
+          </mark-label>
+          <mark-label id='5'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields />
+                </pane-descriptor>
+                <columns>
+                  <field>[msaccess.41688.758064317131].[cnt:Calculation_8370219115907290:qk]</field>
+                  <field>[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]</field>
+                  <field>[msaccess.41688.758064317131].[pcto:cnt:Calculation_8370219115907290:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>561</value>
+                <value>&quot;Manufactured Housing&quot;</value>
+                <value>0.0030386575741654523</value>
+              </tuple>
+            </tuple-reference>
+            <label-position x='76' y='11' />
+          </mark-label>
+          <mark-label id='7'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields />
+                </pane-descriptor>
+                <columns>
+                  <field>[msaccess.41688.758064317131].[cnt:Calculation_8370219115907290:qk]</field>
+                  <field>[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]</field>
+                  <field>[msaccess.41688.758064317131].[pcto:cnt:Calculation_8370219115907290:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>15226</value>
+                <value>&quot;Condo&quot;</value>
+                <value>0.082471658153731156</value>
+              </tuple>
+            </tuple-reference>
+            <label-position x='-14' y='18' />
+          </mark-label>
+        </mark-labels>
+      </table>
+    </worksheet>
+    <worksheet name='Units'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>&lt;</run>
+            <run>Sheet Name</run>
+            <run>&gt;</run>
+            <run>, </run>
+            <run>&lt;</run>
+            <run>[msaccess.41688.758064317131].[none:st:nk]</run>
+            <run>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/Units?rev=' id='5194308' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tbl_origin_combined (Freddie_Origination_new.mdb)' name='msaccess.41688.758064317131' />
+          </datasources>
+          <datasource-dependencies datasource='msaccess.41688.758064317131'>
+            <column caption='Unit Detailed' datatype='string' name='[Calculation_7680219121025640]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [cnt_units] = &quot;1&quot; then &quot;One-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;2&quot; then &quot;Two-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;3&quot; then &quot;Three-unit&quot;&#13;&#10;elseif [cnt_units] = &quot;4&quot; then &quot;Four-unit&quot; end' scope-isolation='false' />
+            </column>
+            <column caption='Property Type Detail' datatype='string' name='[Calculation_8370219115907290]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [prop_type] = &quot;CO&quot; then &quot;Condo&quot;&#13;&#10;elseif [prop_type] = &quot;LH&quot; then &quot;Leasehold&quot;&#13;&#10;elseif [prop_type] = &quot;PUD&quot; then &quot;Planned Unit Development&quot;&#13;&#10;elseif [prop_type] = &quot;MH&quot; then &quot;Manufactured Housing&quot;&#13;&#10;elseif [prop_type] = &quot;SF&quot; then &quot;1-4 Fee Simple&quot;&#13;&#10;elseif [prop_type] = &quot;CP&quot; then &quot;Co-op&quot; end' scope-isolation='false' />
+            </column>
+            <column-instance column='[Calculation_7680219121025640]' derivation='Count' name='[cnt:Calculation_7680219121025640:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_7680219121025640]' derivation='None' name='[none:Calculation_7680219121025640:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_8370219115907290]' derivation='None' name='[none:Calculation_8370219115907290:nk]' pivot='key' type='nominal' />
+            <column-instance column='[st]' derivation='None' name='[none:st:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_7680219121025640]' derivation='Count' name='[pcto:cnt:Calculation_7680219121025640:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column caption='State' datatype='string' name='[st]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:Calculation_8370219115907290:nk]' />
+              <groupfilter function='member' level='[none:Calculation_8370219115907290:nk]' member='%null%' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[msaccess.41688.758064317131].[none:st:nk]' filter-group='3'>
+            <groupfilter function='level-members' level='[none:st:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[msaccess.41688.758064317131].[none:st:nk]</column>
+            <column>[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='height' value='318' />
+            <format attr='width' value='345' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <encodings>
+              <color column='[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]' />
+              <wedge-size column='[msaccess.41688.758064317131].[cnt:Calculation_7680219121025640:qk]' />
+              <text column='[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]' />
+              <text column='[msaccess.41688.758064317131].[pcto:cnt:Calculation_7680219121025640:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+        <mark-labels>
+          <mark-label id='9'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields />
+                </pane-descriptor>
+                <columns>
+                  <field>[msaccess.41688.758064317131].[cnt:Calculation_7680219121025640:qk]</field>
+                  <field>[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]</field>
+                  <field>[msaccess.41688.758064317131].[pcto:cnt:Calculation_7680219121025640:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>658</value>
+                <value>&quot;Three-unit&quot;</value>
+                <value>0.0035640582598945947</value>
+              </tuple>
+            </tuple-reference>
+            <label-position x='-67' y='5' />
+          </mark-label>
+          <mark-label id='10'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields />
+                </pane-descriptor>
+                <columns>
+                  <field>[msaccess.41688.758064317131].[cnt:Calculation_7680219121025640:qk]</field>
+                  <field>[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]</field>
+                  <field>[msaccess.41688.758064317131].[pcto:cnt:Calculation_7680219121025640:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>590</value>
+                <value>&quot;Four-unit&quot;</value>
+                <value>0.0031957361296927216</value>
+              </tuple>
+            </tuple-reference>
+            <label-position x='42' y='13' />
+          </mark-label>
+          <mark-label id='11'>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields />
+                </pane-descriptor>
+                <columns>
+                  <field>[msaccess.41688.758064317131].[cnt:Calculation_7680219121025640:qk]</field>
+                  <field>[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]</field>
+                  <field>[msaccess.41688.758064317131].[pcto:cnt:Calculation_7680219121025640:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>3101</value>
+                <value>&quot;Two-unit&quot;</value>
+                <value>0.016796572437588357</value>
+              </tuple>
+            </tuple-reference>
+            <label-position x='-7' y='24' />
+          </mark-label>
+        </mark-labels>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Bubble Dashboard'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontsize='12'>Freddie Mac Single Family Loan-Level Dataset Sample: Origination Data File</run>
+            <run>Æ&#10;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/BubbleDashboard?rev=' id='5194299' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <style />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='10' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='4015' id='9' type='title' w='100000' x='0' y='0' />
+            <zone h='95985' id='6' param='horz' type='layout-flow' w='100000' x='0' y='4015'>
+              <zone fixed-size='57' h='95985' id='7' is-fixed='true' name='Bubble Chart By Volume' param='[msaccess.41688.758064317131].[none:year:ok]' type='color' w='4947' x='0' y='4015' />
+              <zone fixed-size='643' h='95985' id='4' is-fixed='true' type='layout-basic' w='46093' x='4947' y='4015'>
+                <zone h='67814' id='3' name='Bubble Chart By Volume' show-title='true' w='46093' x='4947' y='4015' />
+                <zone h='28171' id='8' name='Detailed Loan Information' show-title='true' w='46093' x='4947' y='71829' />
+              </zone>
+              <zone fixed-size='405' h='95985' id='15' is-fixed='true' name='Dimension Select' show-title='true' w='29606' x='51040' y='4015'>
+                <layout-cache fixed-size-h='356' type-h='fixed' type-w='fixed' />
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+        <zone h='15333' id='14' param='[Parameters].[Parameter 1]' type='paramctrl' w='13781' x='76055' y='71667' />
+        <zone h='20000' id='17' name='Dimension Select' param='[msaccess.41688.758064317131].[none:Calculation_4450220094736125:nk]' type='color' w='12145' x='62618' y='72167' />
+      </zones>
+    </dashboard>
+    <dashboard name='Geo Dashboard'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontsize='12'>Freddie Mac Single Family Loan-Level Dataset Sample: Origination Data File</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/GeoDashboard?rev=' id='5194298' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <style />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='11' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='4015' id='10' type='title' w='100000' x='0' y='0' />
+            <zone h='95985' id='5' param='horz' type='layout-flow' w='100000' x='0' y='4015'>
+              <zone h='95985' id='3' type='layout-basic' w='82939' x='0' y='4015'>
+                <zone h='95985' id='1' name='Geographic Origination' show-title='true' w='82939' x='0' y='4015' />
+              </zone>
+              <zone fixed-size='238' h='95985' id='4' is-fixed='true' param='vert' type='layout-flow' w='17061' x='82939' y='4015'>
+                <zone h='13860' id='7' name='Geographic Origination' type='currpage' w='17061' x='82939' y='4015' />
+                <zone fixed-size='47' h='7124' id='6' is-fixed='true' name='Geographic Origination' param='[msaccess.41688.758064317131].[avg:orig_upb:qk]' type='color' w='17061' x='82939' y='17875' />
+                <zone h='63732' id='8' name='Metrics By State' show-title='true' w='17061' x='82939' y='24999'>
+                  <layout-cache cell-count-w='15' minheight='164' non-cell-size-w='44' type-h='scalable' type-w='cell' />
+                </zone>
+                <zone h='10751' id='9' name='Metrics By State' param='[msaccess.41688.758064317131].[:Measure Names]' type='color' w='17061' x='82939' y='88731' />
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+    <dashboard name='Pie Dashboard'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontsize='12'>Freddie Mac Single Family Loan-Level Dataset Sample: Origination Data File</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <repository-location derived-from='http://public.tableausoftware.com/workbooks/FreddieMac-OriginationData/PieDashboard?rev=' id='5194300' path='/workbooks/FreddieMac-OriginationData' revision='' />
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='11' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='27' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='3875' id='26' type='title' w='100000' x='0' y='0' />
+            <zone h='96125' id='14' param='horz' type='layout-flow' w='100000' x='0' y='3875'>
+              <zone h='96125' id='12' type='layout-basic' w='84000' x='0' y='3875'>
+                <zone h='48063' id='17' name='Occupancy Status' show-title='true' w='41999' x='42001' y='3875' />
+                <zone h='48062' id='19' name='Property Type' show-title='true' w='42001' x='0' y='51938' />
+                <zone h='48062' id='21' name='Units' show-title='true' w='41999' x='42001' y='51938' />
+                <zone h='48063' id='23' name='Loan Purpose' show-title='true' w='42001' x='0' y='3875' />
+              </zone>
+              <zone fixed-size='160' h='96125' id='13' is-fixed='true' param='vert' type='layout-flow' w='16000' x='84000' y='3875'>
+                <zone h='96125' id='24' name='Loan Purpose' param='[msaccess.41688.758064317131].[none:st:nk]' type='filter' w='16000' x='84000' y='3875' />
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+        <zone h='13750' id='18' name='Occupancy Status' param='[msaccess.41688.758064317131].[none:Calculation_1890219115410625:nk]' type='color' w='15200' x='42500' y='7750' />
+        <zone h='15625' id='20' name='Property Type' param='[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]' type='color' w='13200' x='1000' y='55625' />
+        <zone h='16625' id='22' name='Units' param='[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]' type='color' w='10000' x='42500' y='56375' />
+        <zone h='12500' id='25' name='Loan Purpose' param='[msaccess.41688.758064317131].[none:Calculation_6170219114510521:nk]' type='color' w='12600' x='900' y='10000' />
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='dashboard' maximized='1' name='Geo Dashboard'>
+      <zones>
+        <zone name='Geographic Origination'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+        </zone>
+        <zone name='Geographic Origination' pane-specification-id='0' param='[msaccess.41688.758064317131].[avg:orig_upb:qk]' type='color' />
+        <zone name='Metrics By State'>
+          <viewpoint>
+            <zoom type='entire-view' />
+          </viewpoint>
+          <highlight>
+            <color-one-way>
+              <field>[msaccess.41688.427169791670].[:Measure Names]</field>
+            </color-one-way>
+          </highlight>
+        </zone>
+        <zone name='Metrics By State' pane-specification-id='0' param='[msaccess.41688.758064317131].[:Measure Names]' type='color' />
+      </zones>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='Bubble Dashboard'>
+      <zones>
+        <zone name='Bubble Chart By Volume' pane-specification-id='0' param='[msaccess.41688.758064317131].[none:year:ok]' type='color' />
+        <zone mode='list' name='' param='[Parameters].[Parameter 1]' type='paramctrl' />
+        <zone name='Dimension Select' pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_4450220094736125:nk]' type='color' />
+      </zones>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='Pie Dashboard'>
+      <zones>
+        <zone mode='radiolist' name='Loan Purpose' param='[msaccess.41688.758064317131].[none:st:nk]' type='filter' />
+        <zone name='Occupancy Status' pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_1890219115410625:nk]' type='color' />
+        <zone name='Property Type' pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]' type='color' />
+        <zone name='Units' pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]' type='color' />
+        <zone name='Loan Purpose' pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_6170219114510521:nk]' type='color' />
+      </zones>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Geographic Origination'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='currpage' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[avg:orig_upb:qk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41687.465545648149].[none:st:nk]</field>
+          <field>[msaccess.41687.465545648149].[none:year:ok]</field>
+          <field>[msaccess.41687.465545648149].[none:year:qk]</field>
+          <field>[msaccess.41688.758064317131].[avg:orig_upb:qk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Metrics By State'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41687.465545648149].[avg:ltv:qk]</field>
+          <field>[msaccess.41687.465545648149].[none:st:nk]</field>
+          <field>[msaccess.41687.465545648149].[none:zipcode:nk]</field>
+          <field>[msaccess.41688.427169791670].[avg:dti:qk]</field>
+          <field>[msaccess.41688.427169791670].[none:year:qk]</field>
+          <field>[msaccess.41688.427169791670].[none:zipcode:nk]</field>
+          <field>[msaccess.41688.758064317131].[:Measure Names]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Bubble Chart By Volume'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[none:year:ok]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41688.427169791670].[none:seller_name:nk]</field>
+          <field>[msaccess.41688.427169791670].[none:year (Years):qk]</field>
+          <field>[msaccess.41688.427169791670].[none:year:qk]</field>
+          <field>[msaccess.41688.427169791670].[tyr:year:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:seller:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:year:ok]</field>
+        </color-one-way>
+      </highlight>
+      <selection-collection>
+        <tuple-selection>
+          <tuple-reference>
+            <tuple-descriptor>
+              <pane-descriptor>
+                <x-fields />
+                <y-fields />
+              </pane-descriptor>
+              <columns>
+                <field>[msaccess.41688.758064317131].[cnt:seller_name:qk]</field>
+                <field>[msaccess.41688.758064317131].[none:seller:nk]</field>
+                <field>[msaccess.41688.758064317131].[none:year:ok]</field>
+              </columns>
+            </tuple-descriptor>
+            <tuple>
+              <value>358</value>
+              <value>&quot;Wells Fargo&quot;</value>
+              <value>2011.0</value>
+            </tuple>
+          </tuple-reference>
+        </tuple-selection>
+      </selection-collection>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Detailed Loan Information'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41688.427169791670].[avg:orig_upb:qk]</field>
+          <field>[msaccess.41688.758064317131].[:Measure Names]</field>
+          <field>[msaccess.41688.758064317131].[attr:servicer_name:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:dt_matr:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:fico:ok]</field>
+          <field>[msaccess.41688.758064317131].[none:id_loan:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:loan_purpose:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:occpy_sts:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:orig_upb:ok]</field>
+          <field>[msaccess.41688.758064317131].[none:orig_upb:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:seller:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:seller_name:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:servicer_name:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:year:ok]</field>
+          <field>[msaccess.41688.758064317131].[none:year:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:zipcode:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Loan Purpose'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_6170219114510521:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='57'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41688.758064317131].[cnt:cnt_units:qk]</field>
+          <field>[msaccess.41688.758064317131].[cnt:loan_purpose:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:Calculation_6170219114510521:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:loan_purpose:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:st:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:year:ok]</field>
+          <field>[msaccess.41688.758064317131].[none:year:qk]</field>
+          <field>[msaccess.41688.758064317131].[pcto:cnt:occpy_sts:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Occupancy Status'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_1890219115410625:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[msaccess.41688.758064317131].[none:st:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41688.758064317131].[cnt:cnt_units:qk]</field>
+          <field>[msaccess.41688.758064317131].[cnt:loan_purpose:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:Calculation_1890219115410625:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:loan_purpose:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:st:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:year:ok]</field>
+          <field>[msaccess.41688.758064317131].[none:year:qk]</field>
+          <field>[msaccess.41688.758064317131].[pcto:cnt:occpy_sts:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Property Type'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[msaccess.41688.758064317131].[none:st:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41688.758064317131].[cnt:cnt_units:qk]</field>
+          <field>[msaccess.41688.758064317131].[cnt:loan_purpose:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:Calculation_1890219115410625:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:Calculation_8370219115907290:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:loan_purpose:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:st:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:year:ok]</field>
+          <field>[msaccess.41688.758064317131].[none:year:qk]</field>
+          <field>[msaccess.41688.758064317131].[pcto:cnt:occpy_sts:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Units'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[msaccess.41688.758064317131].[none:st:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41688.758064317131].[none:Calculation_7680219121025640:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Dimension Select'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[msaccess.41688.758064317131].[none:Calculation_4450220094736125:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='list' param='[Parameters].[Parameter 1]' type='parameter' />
+            <card param='[msaccess.41688.758064317131].[none:st:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[msaccess.41688.758064317131].[cnt:cnt_units:qk]</field>
+          <field>[msaccess.41688.758064317131].[cnt:loan_purpose:qk]</field>
+          <field>[msaccess.41688.758064317131].[none:Calculation_4450220094736125:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:loan_purpose:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:st:nk]</field>
+          <field>[msaccess.41688.758064317131].[none:year:ok]</field>
+          <field>[msaccess.41688.758064317131].[none:year:qk]</field>
+          <field>[msaccess.41688.758064317131].[pcto:cnt:occpy_sts:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails />
+</workbook>
