@@ -1,0 +1,14 @@
+﻿week,Week
+frm_30,30-Year Fixed Rate Mortgage Rates
+points_30,30-Year Fees & points
+frm_15,15-Year Fixed Rate Mortgage Rates
+points_15,15-Year Fees & points
+arm,ARM
+arm_points,ARM Fees & points
+margin,ARM Margin
+spread,30-Year Fixed Rate / ARM Spread
+Previous_Year_Value,52-week Look back 30-Year Mortage Rates
+Previous_Year_Value_15,52-week Look back 15-Year Mortage Rates
+Previous_year_week,52-week look back date
+YoY_Change_Percent_30,Year over year % Change 30-year Fixed-Rate Mortage
+YoY_Change_Percent_15,Year over year % Change 15-year Fixed-Rate Mortage
